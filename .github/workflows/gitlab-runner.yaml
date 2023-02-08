@@ -4,19 +4,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Maximize Build Space
-        uses: easimon/maximize-build-space@master
-        with:
-          root-reserve-mb: 512
-          swap-size-mb: 1024
-          remove-dotnet: 'true'
-          remove-android: 'true'
-          remove-haskell: 'true'
-      
       - name: Tailscale
         uses: tailscale/github-action@main
         with:
           authkey: "${{ github.event.client_payload.tailscale_authkey }}"
+      
+      - name: Lookup address
+        run: |
+          nslookup https://gitlab.azureolympos.com
+
 
       - name: GitLab Custom CICD
         uses: metril/gitlab-runner-action@main
