@@ -19,9 +19,10 @@ jobs:
           authkey: "${{ github.event.client_payload.tailscale_authkey }}"
 
       - name: Gitlab Runner
-        uses: edersonbrilhante/gitlab-runner-action@main
+        uses: metril/gitlab-runner-action@main
         with:
           registration-token: "${{ github.event.client_payload.registration_token }}"
+          gitlab-url: "${{ github.event.client_payload.gitlab_url }}"
           docker-image: "docker:19.03.12"
           name: ${{ github.run_id }}
           tag-list: "githubrunner"
