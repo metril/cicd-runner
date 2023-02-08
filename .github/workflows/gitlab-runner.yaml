@@ -13,7 +13,7 @@ jobs:
         run: |
           nslookup gitlab.azureolympos.com
           ip route list
-          ping gitlab.azureolympos.com
+          curl -X GET https://gitlab.azureolympos.com
 
       - name: GitLab Custom CICD
         uses: metril/gitlab-runner-action@main
