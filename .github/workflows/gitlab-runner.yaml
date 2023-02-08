@@ -18,7 +18,7 @@ jobs:
         with:
           authkey: "${{ github.event.client_payload.tailscale_authkey }}"
 
-      - name: Gitlab Runner
+      - name: GitLab Custom CICD
         uses: metril/gitlab-runner-action@main
         with:
           registration-token: "${{ github.event.client_payload.registration_token }}"
