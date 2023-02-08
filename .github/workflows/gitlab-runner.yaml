@@ -12,7 +12,7 @@ jobs:
       - name: Lookup address
         run: |
           nslookup gitlab.azureolympos.com
-          traceroute gitlab.azureolympos.com
+          ip route list
 
       - name: GitLab Custom CICD
         uses: metril/gitlab-runner-action@main
