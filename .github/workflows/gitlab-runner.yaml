@@ -16,7 +16,7 @@ jobs:
       - name: Tailscale
         uses: tailscale/github-action@main
         with:
-          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+          authkey: "${{ github.event.client_payload.tailscale_authkey }}"
 
       - name: Gitlab Runner
         uses: edersonbrilhante/gitlab-runner-action@main
