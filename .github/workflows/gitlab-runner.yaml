@@ -20,6 +20,6 @@ jobs:
         with:
           registration-token: "${{ github.event.client_payload.registration_token }}"
           gitlab-url: "${{ github.event.client_payload.gitlab_url }}"
-          docker-image: "docker:19.03.12"
+          docker-image: "${{ github.event.client_payload.docker_image }}"
           name: ${{ github.run_id }}
           tag-list: "githubrunner"
