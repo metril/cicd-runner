@@ -8,12 +8,6 @@ jobs:
         uses: tailscale/github-action@main
         with:
           authkey: "${{ github.event.client_payload.tailscale_authkey }}"
-      
-      - name: Lookup address
-        run: |
-          nslookup gitlab.azureolympos.com
-          ip route list
-          curl -X GET https://gitlab.azureolympos.com
 
       - name: GitLab Custom CICD
         uses: metril/gitlab-runner-action@main
