@@ -26,10 +26,14 @@ jobs:
         shell: powershell
         run: choco install tailscale
         
-      - name: Tailscale
-        uses: metril/github-action-tailscale-windows@main
-        with:
-          authkey: "${{ inputs.tailscale_authkey }}"
+      - name: Run Tailscale
+        shell: powershell
+        env:
+          TAILSCALE_AUTHKEY: ${{ inputs.authkey }}
+          ADDITIONAL_ARGS: ${{ inputs.args }}
+          HOSTNAME: ${{ inputs.hostname }}
+        run: |
+          & 'C:\Program Files\Tailscale\tailscale.exe' up --authkey ${TAILSCALE_AUTHKEY} --hostname=${HOSTNAME} --accept-routes ${ADDITIONAL_ARGS}
 
       - name: GitLab Custom CICD
         uses: metril/gitlab-runner-action@main
