@@ -29,9 +29,7 @@ jobs:
       - name: Run Tailscale
         shell: powershell
         env:
-          TAILSCALE_AUTHKEY: ${{ inputs.authkey }}
-          ADDITIONAL_ARGS: ${{ inputs.args }}
-          HOSTNAME: ${{ inputs.hostname }}
+          TAILSCALE_AUTHKEY: ${{ inputs.tailscale_authkey }}
         run: |
           & 'C:\Program Files\Tailscale\tailscale.exe' up --authkey ${TAILSCALE_AUTHKEY} --hostname=${HOSTNAME} --accept-routes ${ADDITIONAL_ARGS}
 
