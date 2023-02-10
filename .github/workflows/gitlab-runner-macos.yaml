@@ -2,7 +2,7 @@ name: Gitlab Runner Service
 on: [repository_dispatch]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Tailscale
         uses: tailscale/github-action@main
@@ -16,4 +16,4 @@ jobs:
           gitlab-url: "${{ github.event.client_payload.gitlab_url }}"
           docker-image: "${{ github.event.client_payload.docker_image }}"
           name: ${{ github.run_id }}
-          tag-list: "githubrunner"
+          tag-list: "githubrunner-macos"

@@ -1,0 +1,19 @@
+name: Gitlab Runner Service
+on: [repository_dispatch]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Tailscale
+        uses: tailscale/github-action@main
+        with:
+          authkey: "${{ github.event.client_payload.tailscale_authkey }}"
+
+      - name: GitLab Custom CICD
+        uses: metril/gitlab-runner-action@main
+        with:
+          registration-token: "${{ github.event.client_payload.registration_token }}"
+          gitlab-url: "${{ github.event.client_payload.gitlab_url }}"
+          docker-image: "${{ github.event.client_payload.docker_image }}"
+          name: ${{ github.run_id }}
+          tag-list: "githubrunner-windows"
