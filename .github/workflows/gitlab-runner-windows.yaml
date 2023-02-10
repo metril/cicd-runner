@@ -31,7 +31,7 @@ jobs:
         env:
           AUTHKEY: "${{ inputs.tailscale_authkey }}"
         run: |
-          & 'C:\Program Files\Tailscale\tailscale.exe' up --authkey $AUTHKEY --hostname=$HOSTNAME --accept-routes
+          & 'C:\Program Files\Tailscale\tailscale.exe' up --authkey=$AUTHKEY --hostname=$HOSTNAME --accept-routes
 
       - name: GitLab Custom CICD
         uses: metril/gitlab-runner-action@main
