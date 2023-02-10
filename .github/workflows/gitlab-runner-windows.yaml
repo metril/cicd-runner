@@ -29,9 +29,9 @@ jobs:
       - name: Run Tailscale
         shell: powershell
         env:
-          TAILSCALE_AUTHKEY: ${{ inputs.tailscale_authkey }}
+          AUTHKEY: "${{ inputs.tailscale_authkey }}"
         run: |
-          & 'C:\Program Files\Tailscale\tailscale.exe' up --authkey ${TAILSCALE_AUTHKEY} --hostname=${HOSTNAME} --accept-routes ${ADDITIONAL_ARGS}
+          & 'C:\Program Files\Tailscale\tailscale.exe' up --authkey $AUTHKEY --hostname=$HOSTNAME --accept-routes
 
       - name: GitLab Custom CICD
         uses: metril/gitlab-runner-action@main
