@@ -1,4 +1,4 @@
-name: Gitlab Runner Service
+name: Gitlab Runner Service - Windows
 on: [repository_dispatch]
 jobs:
   build:
