@@ -19,7 +19,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Tailscale
-        uses: tailscale/github-action@main
+        uses: metril/github-action-tailscale-windows@main
         with:
           authkey: "${{ inputs.tailscale_authkey }}"
 
