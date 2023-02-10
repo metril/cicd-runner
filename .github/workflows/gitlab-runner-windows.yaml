@@ -21,7 +21,7 @@ jobs:
       - name: Tailscale
         uses: tailscale/github-action@main
         with:
-          authkey: "${{ github.event.client_payload.tailscale_authkey }}"
+          authkey: "${{ inputs.tailscale_authkey }}"
 
       - name: GitLab Custom CICD
         uses: metril/gitlab-runner-action@main
