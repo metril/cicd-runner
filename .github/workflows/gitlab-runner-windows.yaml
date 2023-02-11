@@ -53,6 +53,7 @@ jobs:
         shell: powershell
         run: |
           while ($true) {
+            Get-WinEvent -ProviderName gitlab-runner
             $status = Get-WinEvent -ProviderName gitlab-runner
             if ($status -match "Job succeeded" -Or $status -match "Failed to process runner") {
               break
