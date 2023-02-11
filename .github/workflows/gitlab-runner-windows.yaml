@@ -33,11 +33,10 @@ jobs:
         run: |
           & 'C:\Program Files\Tailscale\tailscale.exe' up --authkey ${env:AUTHKEY} --hostname=$HOSTNAME --accept-routes --unattended
 
-      - name: GitLab Custom CICD
-        uses: metril/gitlab-runner-action@main
-        with:
-          registration-token: "${{ inputs.registration_token }}"
-          gitlab-url: "${{ inputs.gitlab_url }}"
-          docker-image: "${{ inputs.docker_image }}"
-          name: ${{ github.run_id }}
-          tag-list: "githubrunner-windows"
+      - name: Install GitLab Runner
+        shell: powrshell
+        run: choco install gitlab-runner
+
+      - name: Register GitLab Runner
+        shell: powershell
+        run: gitlab-runner.exe register --non-interactive --executor "shell" --url "${{ inputs.gitlab_url }}" --registration-token "${{ inputs.registration_token }}" --tag-list "githubrunner-windows" --run-untagged --locked="false" --name $HOSTNAME
