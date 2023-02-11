@@ -49,6 +49,18 @@ jobs:
         shell: powershell
         run: gitlab-runner.exe start
 
+      - name: Check Job Status
+        shell: powershell
+        run: |
+          while ($true) {
+            $status = Get-WinEvent -ProviderName gitlab-runner
+            if ($status -match "Job succeeded" -Or $status -match "Failed to process runner") {
+              break
+            }
+            Write-Host "Waiting for job status to change..."
+            Start-Sleep -s 10
+          }
+
       - name: Stop GitLab Runner
         shell: powershell
         run: gitlab-runner.exe stop
