@@ -34,7 +34,7 @@ jobs:
           & 'C:\Program Files\Tailscale\tailscale.exe' up --authkey ${env:AUTHKEY} --hostname=$HOSTNAME --accept-routes --unattended
 
       - name: Install GitLab Runner
-        shell: powrshell
+        shell: powershell
         run: choco install gitlab-runner
 
       - name: Register GitLab Runner
