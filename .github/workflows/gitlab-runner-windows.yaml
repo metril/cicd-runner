@@ -39,10 +39,19 @@ jobs:
 
       - name: Register GitLab Runner
         shell: powershell
-        run: gitlab-runner.exe register --non-interactive --executor "shell" --url "${{ inputs.gitlab_url }}" --registration-token "${{ inputs.registration_token }}" --tag-list "githubrunner-windows" --run-untagged --locked="false"
+        run: gitlab-runner.exe register --non-interactive --executor "shell" --url "${{ inputs.gitlab_url }}" --registration-token "${{ inputs.registration_token }}" --tag-list "githubrunner-windows" --run-untagged --locked="false" --name $env:COMPUTERNAME
 
       - name: Start GitLab Runner
         shell: powershell
         run: gitlab-runner.exe start
+
+      - name: Stop GitLab Runner
+        shell: powershell
+        run: gitlab-runner.exe stop
+
+      - name: Unregister GitLab Runner
+        shell: powershell
+        run: gitlab-runner.exe unregister --name $env:COMPUTERNAME
+
 
       
