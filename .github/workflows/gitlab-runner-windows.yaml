@@ -33,7 +33,7 @@ jobs:
         run: |
           & 'C:\Program Files\Tailscale\tailscale.exe' up --authkey ${env:AUTHKEY} --hostname=$HOSTNAME --accept-routes --unattended
 
-      - name: Install GitLab Runner
+      - name: Install GitLab Runner from Chocolatey
         shell: powershell
         run: choco install gitlab-runner
 
@@ -41,6 +41,10 @@ jobs:
         shell: powershell
         run: gitlab-runner.exe register --non-interactive --executor "shell" --url "${{ inputs.gitlab_url }}" --registration-token "${{ inputs.registration_token }}" --tag-list "githubrunner-windows" --run-untagged --locked="false" --name $env:COMPUTERNAME
 
+      - name: Install GitLab Runner Service
+        shell: powershell
+        run: gitlab-runner.exe install
+        
       - name: Start GitLab Runner
         shell: powershell
         run: gitlab-runner.exe start
