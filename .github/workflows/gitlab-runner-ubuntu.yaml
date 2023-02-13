@@ -22,6 +22,12 @@ jobs:
         uses: tailscale/github-action@main
         with:
           authkey: "${{ inputs.tailscale_authkey }}"
+      
+      - name: DNS Check
+        shell: bash
+        run: |
+          nslookup gitlab.azureolympos.com
+          ping -c 4 10.10.77.19
 
       - name: GitLab Custom CICD
         uses: metril/gitlab-runner-action@main
