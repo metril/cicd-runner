@@ -26,9 +26,9 @@ jobs:
       - name: DNS Check
         shell: bash
         run: |
-          nslookup gitlab.azureolympos.com
           ping -c 4 10.10.77.19
-
+          nslookup gitlab.azureolympos.com
+          
       - name: GitLab Custom CICD
         uses: metril/gitlab-runner-action@main
         with:
