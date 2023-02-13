@@ -36,9 +36,9 @@ jobs:
       - name: Static DNS Entry
         shell: powershell
         run: |
-          add-content c:\windows\system32\drivers\etc\hosts "10.10.77.19 gitlab.azureolympos.com”;
-          add-content c:\windows\system32\drivers\etc\hosts "10.10.77.19 registry.gitlab.azureolympos.com”;
-          add-content c:\windows\system32\drivers\etc\hosts "10.10.77.43 vault.azureolympos.com”;
+          Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n10.10.77.19`tgitlab.azureolympos.com" -Force;
+          Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n10.10.77.19`tregistry.gitlab.azureolympos.com" -Force;
+          Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n10.10.77.43`tvault.azureolympos.com" -Force;
           ipconfig /flushdns
 
       - name: Install GitLab Runner from Chocolatey
