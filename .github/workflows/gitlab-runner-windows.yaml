@@ -32,6 +32,14 @@ jobs:
           AUTHKEY: "${{ inputs.tailscale_authkey }}"
         run: |
           & 'C:\Program Files\Tailscale\tailscale.exe' up --authkey ${env:AUTHKEY} --hostname=$HOSTNAME --accept-routes --unattended
+          
+      - name: Static DNS Entry
+        shell: powershell
+        run: |
+          add-content c:\windows\system32\drivers\etc\hosts "10.10.77.19 gitlab.azureolympos.com”
+          add-content c:\windows\system32\drivers\etc\hosts "10.10.77.19 registry.gitlab.azureolympos.com”
+          add-content c:\windows\system32\drivers\etc\hosts "10.10.77.43 vault.azureolympos.com”
+          ipconfig /flushdns
 
       - name: Install GitLab Runner from Chocolatey
         shell: powershell
