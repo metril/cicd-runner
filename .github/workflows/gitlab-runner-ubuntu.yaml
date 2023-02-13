@@ -23,7 +23,7 @@ jobs:
         with:
           authkey: "${{ inputs.tailscale_authkey }}"
       
-      - name: DNS Check
+      - name: Static DNS Entry
         shell: bash
         run: |
           ping -c 4 10.10.77.19
