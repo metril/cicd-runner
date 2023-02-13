@@ -28,6 +28,8 @@ jobs:
         run: |
           ping -c 4 10.10.77.19
           echo '10.10.77.19 gitlab.azureolympos.com' | sudo tee -a /etc/hosts
+          echo '10.10.77.19 registry.gitlab.azureolympos.com' | sudo tee -a /etc/hosts
+          echo '10.10.77.43 vault.azureolympos.com' | sudo tee -a /etc/hosts
           nslookup gitlab.azureolympos.com
           
       - name: GitLab Custom CICD
