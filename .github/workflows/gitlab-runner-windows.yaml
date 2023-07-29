@@ -43,7 +43,7 @@ jobs:
 
       - name: Install GitLab Runner from Chocolatey
         shell: powershell
-        run: choco install gitlab-runner
+        run: choco install gitlab-runner --version=16.1.0
 
       - name: Register GitLab Runner
         shell: powershell
