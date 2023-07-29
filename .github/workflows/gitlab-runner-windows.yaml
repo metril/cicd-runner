@@ -43,7 +43,7 @@ jobs:
 
       - name: Install Git from Chocolatey
         shell: powershell
-        run: choco install git.install --version=2.38.1
+        run: choco install git.install --params "'/NoGitLfs'"
         
       - name: Install GitLab Runner from Chocolatey
         shell: powershell
