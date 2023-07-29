@@ -41,9 +41,13 @@ jobs:
           Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n10.10.77.43`tvault.azureolympos.com" -Force;
           ipconfig /flushdns
 
+      - name: Install Git from Chocolatey
+        shell: powershell
+        run: choco install git.install
+        
       - name: Install GitLab Runner from Chocolatey
         shell: powershell
-        run: choco install gitlab-runner --version=16.0.0
+        run: choco install gitlab-runner
 
       - name: Register GitLab Runner
         shell: powershell
