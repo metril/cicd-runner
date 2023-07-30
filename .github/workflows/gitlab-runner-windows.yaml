@@ -40,15 +40,11 @@ jobs:
           Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n10.10.77.19`tregistry.gitlab.azureolympos.com" -Force;
           Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n10.10.77.43`tvault.azureolympos.com" -Force;
           ipconfig /flushdns
-
-      - name: Install Git from Chocolatey
-        shell: powershell
-        run: choco install git.install --params "'/NoGitLfs'"
         
-      - name: Install GitLab Runner from Chocolatey
+      - name: Download GitLab Runner
         shell: powershell
-        run: choco install gitlab-runner
-
+        run: Invoke-WebRequest -Uri https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-windows-amd64.exe -OutFile gitlab-runner-windows-amd64.exe
+        
       - name: Register GitLab Runner
         shell: powershell
         run: gitlab-runner.exe register --non-interactive --executor "shell" --url "${{ inputs.gitlab_url }}" --registration-token "${{ inputs.registration_token }}" --tag-list "githubrunner-windows" --run-untagged --locked="false" --name $env:COMPUTERNAME
