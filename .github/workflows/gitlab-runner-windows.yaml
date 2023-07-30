@@ -71,11 +71,11 @@ jobs:
 
       - name: Stop GitLab Runner
         shell: powershell
-        run: gitlab-runner.exe stop
+        run: .\gitlab-runner.exe stop
 
       - name: Unregister GitLab Runner
         shell: powershell
-        run: gitlab-runner.exe unregister --name $env:COMPUTERNAME
+        run: .\gitlab-runner.exe unregister --name $env:COMPUTERNAME
 
 
       
