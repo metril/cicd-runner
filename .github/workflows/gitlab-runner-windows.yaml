@@ -43,7 +43,7 @@ jobs:
         
       - name: Download GitLab Runner
         shell: powershell
-        run: Invoke-WebRequest -Uri https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-windows-amd64.exe -OutFile gitlab-runner-windows-amd64.exe
+        run: Invoke-WebRequest -Uri https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-windows-amd64.exe -OutFile gitlab-runner.exe
         
       - name: Register GitLab Runner
         shell: powershell
