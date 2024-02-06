@@ -2,8 +2,14 @@ name: Gitlab Runner Service - Ubuntu
 on:
   workflow_dispatch:
     inputs:
-      tailscale_authkey:
-        description: 'Tailscale Auth Key'
+      tailscale_oauth_client_id:
+        description: 'Oauth Client ID'
+        required: true
+      tailscale_oauth_client_secret:
+        description: 'Oauth Client Secret'
+        required: true
+      tailscale_tags:
+        description: 'ACL Tags'
         required: true
       registration_token:
         description: 'GitLab Runner Registration Token'
@@ -21,7 +27,9 @@ jobs:
       - name: Tailscale
         uses: tailscale/github-action@main
         with:
-          authkey: "${{ inputs.tailscale_authkey }}"
+          oauth-client-id: "${{ inputs.tailscale_oauth_client_id }}"
+          oauth-secret: "${{ inputs.tailscale_oauth_client_secret }}"
+          tags: "${{ inputs.tailscale_tags }}"
       
       - name: Static DNS Entry
         shell: bash
