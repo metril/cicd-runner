@@ -38,7 +38,7 @@ jobs:
           AUTHKEY: "${{ inputs.tailscale_oauth_client_secret }}"
           TAGS: "${{ inputs.tailscale_tags }}"
         run: |
-          & 'C:\Program Files\Tailscale\tailscale.exe' up --authkey=${env:AUTHKEY}?ephemeral=true&preauthorized=true --advertise-tags=${env:TAGS} --hostname=$HOSTNAME --accept-routes --unattended
+          & 'C:\Program Files\Tailscale\tailscale.exe' up --authkey="${env:AUTHKEY}?ephemeral=true&preauthorized=true" --advertise-tags=${env:TAGS} --hostname=$HOSTNAME --accept-routes --unattended
           
       - name: Static DNS Entry
         shell: powershell
