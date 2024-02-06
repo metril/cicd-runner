@@ -2,8 +2,14 @@ name: Gitlab Runner Service - Windows
 on:
   workflow_dispatch:
     inputs:
-      tailscale_authkey:
-        description: 'Tailscale Auth Key'
+      tailscale_oauth_client_id:
+        description: 'Oauth Client ID'
+        required: true
+      tailscale_oauth_client_secret:
+        description: 'Oauth Client Secret'
+        required: true
+      tailscale_tags:
+        description: 'ACL Tags'
         required: true
       registration_token:
         description: 'GitLab Runner Registration Token'
@@ -29,9 +35,10 @@ jobs:
       - name: Run Tailscale
         shell: powershell
         env:
-          AUTHKEY: "${{ inputs.tailscale_authkey }}"
+          AUTHKEY: "${{ inputs.tailscale_oauth_client_secret }}"
+          TAGS: "${{ inputs.tailscale_tags }}"
         run: |
-          & 'C:\Program Files\Tailscale\tailscale.exe' up --authkey ${env:AUTHKEY} --hostname=$HOSTNAME --accept-routes --unattended
+          & 'C:\Program Files\Tailscale\tailscale.exe' up --authkey ${env:AUTHKEY}?ephemeral=true&preauthorized=true --advertise-tags=${env:TAGS} --hostname=$HOSTNAME --accept-routes --unattended
           
       - name: Static DNS Entry
         shell: powershell
