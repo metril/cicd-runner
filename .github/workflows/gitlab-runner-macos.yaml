@@ -30,15 +30,7 @@ jobs:
           oauth-client-id: "${{ inputs.tailscale_oauth_client_id }}"
           oauth-secret: "${{ inputs.tailscale_oauth_client_secret }}"
           tags: "${{ inputs.tailscale_tags }}"
-          
-      - name: Static DNS Entry
-        shell: bash
-        run: |
-          ping -c 4 10.10.77.19
-          echo '10.10.77.19 gitlab.azureolympos.com' | sudo tee -a /etc/hosts
-          echo '10.10.77.19 registry.gitlab.azureolympos.com' | sudo tee -a /etc/hosts
-          echo '10.10.77.43 vault.azureolympos.com' | sudo tee -a /etc/hosts
-          nslookup gitlab.azureolympos.com
+          args: "--accept-dns=true"
 
       - name: GitLab Custom CICD
         uses: metril/gitlab-runner-action@main
