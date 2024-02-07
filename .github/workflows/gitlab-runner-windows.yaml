@@ -38,15 +38,7 @@ jobs:
           AUTHKEY: "${{ inputs.tailscale_oauth_client_secret }}"
           TAGS: "${{ inputs.tailscale_tags }}"
         run: |
-          & 'C:\Program Files\Tailscale\tailscale.exe' up --authkey="${env:AUTHKEY}?ephemeral=true&preauthorized=true" --advertise-tags=${env:TAGS} --hostname=$HOSTNAME --accept-routes --unattended
-          
-      - name: Static DNS Entry
-        shell: powershell
-        run: |
-          Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n10.10.77.19`tgitlab.azureolympos.com" -Force;
-          Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n10.10.77.19`tregistry.gitlab.azureolympos.com" -Force;
-          Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n10.10.77.43`tvault.azureolympos.com" -Force;
-          ipconfig /flushdns
+          & 'C:\Program Files\Tailscale\tailscale.exe' up --authkey="${env:AUTHKEY}?ephemeral=true&preauthorized=true" --advertise-tags=${env:TAGS} --hostname=$HOSTNAME --accept-routes --accept-dns=true --unattended
         
       - name: Download GitLab Runner
         shell: powershell
