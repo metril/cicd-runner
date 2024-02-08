@@ -17,6 +17,9 @@ on:
       gitlab_url:
         description: 'GitLab URL'
         required: true
+      gitlab_runner_tag:
+        description: 'GitLab Runner Tag'
+        required: true
       docker_image:
         description: 'Docker Image'
         required: true
@@ -42,4 +45,4 @@ jobs:
           gitlab-url: "${{ inputs.gitlab_url }}"
           docker-image: "${{ inputs.docker_image }}"
           name: ${{ github.run_id }}
-          tag-list: "githubrunner-ubuntu"
+          tag-list: "${{ inputs.gitlab_runner_tag }}"
