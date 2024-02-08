@@ -46,3 +46,4 @@ jobs:
           docker-image: "${{ inputs.docker_image }}"
           name: ${{ github.run_id }}
           tag-list: "${{ inputs.gitlab_runner_tag }}"
+          run-untagged: "false"
