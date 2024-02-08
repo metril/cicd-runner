@@ -25,7 +25,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Masking Variables
-        uses: levibostian/action-hide-sensitive-inputs@v1
+        uses: metril/action-hide-sensitive-inputs@main
         
       - name: Chocolatey Install
         shell: powershell
