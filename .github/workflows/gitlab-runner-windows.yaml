@@ -52,7 +52,7 @@ jobs:
         
       - name: Register GitLab Runner
         shell: powershell
-        run: .\gitlab-runner.exe register --non-interactive --executor "shell" --url "${{ inputs.gitlab_url }}" --registration-token "${{ inputs.registration_token }}" --tag-list "${{ inputs.gitlab_runner_tag }}" --run-untagged --locked="false" --name $env:COMPUTERNAME
+        run: .\gitlab-runner.exe register --non-interactive --executor "shell" --url "${{ inputs.gitlab_url }}" --registration-token "${{ inputs.registration_token }}" --tag-list "${{ inputs.gitlab_runner_tag }}" --run-untagged="false" --locked="false" --name $env:COMPUTERNAME
 
       - name: Install GitLab Runner Service
         shell: powershell
