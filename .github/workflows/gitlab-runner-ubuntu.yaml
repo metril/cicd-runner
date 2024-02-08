@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Masking Variables
-        uses: metril/action-hide-sensitive-inputs@latest
+        uses: metril/action-hide-sensitive-inputs@v1
         
       - name: Tailscale
         uses: tailscale/github-action@main
