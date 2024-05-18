@@ -11,8 +11,8 @@ on:
       tailscale_tags:
         description: 'ACL Tags'
         required: true
-      registration_token:
-        description: 'GitLab Private Token'
+      runner_authentication_token:
+        description: 'Runner Authentication Token'
         required: true
       gitlab_url:
         description: 'GitLab URL'
@@ -24,15 +24,6 @@ on:
         description: 'Delete runner manager'
         required: true
         default: 'false'
-      private_token:
-        description: 'Private token'
-        required: true
-      project_id:
-        description: 'Project id'
-        required: true
-      tag_list:
-        description: 'Tag list'
-        required: true
         
 jobs:
   build:
@@ -53,11 +44,8 @@ jobs:
       - name: GitLab Custom CICD
         uses: metril/gitlab-runner-action@main
         with:
-          registration-token: "${{ inputs.registration_token }}"
+          runner-authentication-token: "${{ inputs.runner_authentication_token }}"
           gitlab-url: "${{ inputs.gitlab_url }}"
           docker-image: "${{ inputs.docker_image }}"
           name: ${{ github.run_id }}
           delete-runner: "${{ inputs.delete_runner }}"
-          private-token: "${{ inputs.private_token }}"
-          project-id: "${{ inputs.project_id }}"
-          tag-list: "${{ inputs.tag_list }}"
