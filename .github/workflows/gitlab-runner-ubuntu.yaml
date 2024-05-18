@@ -14,6 +14,9 @@ on:
       private_token:
         description: 'GitLab Private Token'
         required: true
+      project_id:
+        description: 'Project ID'
+        required: true
       gitlab_url:
         description: 'GitLab URL'
         required: true
@@ -43,6 +46,7 @@ jobs:
         uses: metril/gitlab-runner-action@main
         with:
           private-token: "${{ inputs.private_token }}"
+          project-id: "${{ inputs.project_id }}"
           gitlab-url: "${{ inputs.gitlab_url }}"
           docker-image: "${{ inputs.docker_image }}"
           name: ${{ github.run_id }}
