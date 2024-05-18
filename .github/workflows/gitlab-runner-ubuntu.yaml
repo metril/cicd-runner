@@ -32,6 +32,9 @@ jobs:
     steps:
       - name: Masking Variables
         uses: metril/action-hide-sensitive-inputs@latest
+
+      - name: Latest curl
+        run: sudo apt install -y curl
         
       - name: Tailscale
         uses: tailscale/github-action@main
