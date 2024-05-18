@@ -34,7 +34,7 @@ jobs:
         uses: metril/action-hide-sensitive-inputs@latest
 
       - name: Latest curl
-        run: sudo apt install -y curl
+        run: sudo apt-get update && sudo apt-get install -y curl
         
       - name: Tailscale
         uses: tailscale/github-action@main
