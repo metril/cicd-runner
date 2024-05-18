@@ -43,7 +43,7 @@ jobs:
           oauth-secret: "${{ inputs.tailscale_oauth_client_secret }}"
           tags: "${{ inputs.tailscale_tags }}"
           args: "--accept-dns=true"
-          version: '1.62.0'
+          version: '1.66.3'
           
       - name: GitLab Custom CICD
         uses: metril/gitlab-runner-action@main
