@@ -27,6 +27,12 @@ on:
       private_token:
         description: 'Private token'
         required: true
+      project_id:
+        description: 'Project id'
+        required: true
+      tag_list:
+        description: 'Tag list'
+        required: true
         
 jobs:
   build:
@@ -53,3 +59,5 @@ jobs:
           name: ${{ github.run_id }}
           delete-runner: "${{ inputs.delete_runner }}"
           private-token: "${{ inputs.private_token }}"
+          project-id: "${{ inputs.project_id }}"
+          tag-list: "${{ inputs.tag-list }}"
