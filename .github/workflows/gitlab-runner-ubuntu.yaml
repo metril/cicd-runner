@@ -11,8 +11,8 @@ on:
       tailscale_tags:
         description: 'ACL Tags'
         required: true
-      registration_token:
-        description: 'GitLab Runner Registration Token'
+      authentication_token:
+        description: 'GitLab Runner Authentication Token'
         required: true
       gitlab_url:
         description: 'GitLab URL'
@@ -42,9 +42,7 @@ jobs:
       - name: GitLab Custom CICD
         uses: metril/gitlab-runner-action@main
         with:
-          registration-token: "${{ inputs.registration_token }}"
+          authentication-token: "${{ inputs.authentication_token }}"
           gitlab-url: "${{ inputs.gitlab_url }}"
           docker-image: "${{ inputs.docker_image }}"
           name: ${{ github.run_id }}
-          tag-list: "${{ inputs.gitlab_runner_tag }}"
-          run-untagged: "false"
