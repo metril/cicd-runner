@@ -24,6 +24,9 @@ on:
         description: 'Delete runner manager'
         required: true
         default: 'false'
+      private_token:
+        description: 'Private token'
+        required: true
         
 jobs:
   build:
@@ -49,3 +52,4 @@ jobs:
           docker-image: "${{ inputs.docker_image }}"
           name: ${{ github.run_id }}
           delete-runner: "${{ inputs.delete_runner }}"
+          private-token: "${{ inputs.private_token }}"
