@@ -44,7 +44,7 @@ jobs:
       - name: GitLab Custom CICD
         uses: metril/gitlab-runner-action@main
         with:
-          runner-authentication-token: "${{ inputs.runner_authentication_token }}"
+          authentication-token: "${{ inputs.runner_authentication_token }}"
           gitlab-url: "${{ inputs.gitlab_url }}"
           docker-image: "${{ inputs.docker_image }}"
           name: ${{ github.run_id }}
