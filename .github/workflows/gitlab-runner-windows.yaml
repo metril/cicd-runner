@@ -11,18 +11,20 @@ on:
       tailscale_tags:
         description: 'ACL Tags'
         required: true
-      registration_token:
-        description: 'GitLab Runner Registration Token'
+      runner_authentication_token:
+        description: 'Runner Authentication Token'
         required: true
       gitlab_url:
         description: 'GitLab URL'
         required: true
-      gitlab_runner_tag:
-        description: 'GitLab Runner Tag'
-        required: true
       docker_image:
         description: 'Docker Image'
         required: true
+      delete_runner:
+        description: 'Delete runner manager'
+        required: true
+        default: 'false'
+        
 jobs:
   build:
     runs-on: windows-latest
@@ -52,7 +54,7 @@ jobs:
         
       - name: Register GitLab Runner
         shell: powershell
-        run: .\gitlab-runner.exe register --non-interactive --executor "shell" --url "${{ inputs.gitlab_url }}" --registration-token "${{ inputs.registration_token }}" --tag-list "${{ inputs.gitlab_runner_tag }}" --run-untagged="false" --locked="false" --name $env:COMPUTERNAME
+        run: .\gitlab-runner.exe register --non-interactive --executor "shell" --url "${{ inputs.gitlab_url }}" --token "${{ inputs.runner_authentication_token }}" --name $env:COMPUTERNAME
 
       - name: Install GitLab Runner Service
         shell: powershell
@@ -81,6 +83,10 @@ jobs:
       - name: Unregister GitLab Runner
         shell: powershell
         run: .\gitlab-runner.exe unregister --name $env:COMPUTERNAME
+
+      - name: Delete GitLab Runner
+        shell: powershell
+        run: Invoke-RestMethod -Uri "${{ inputs.gitlab_url }}/api/v4/runners" -Method DELETE -Body "token=${{ inputs.runner_authentication_token }}"
 
 
       
