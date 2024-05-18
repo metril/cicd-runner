@@ -85,6 +85,7 @@ jobs:
         run: .\gitlab-runner.exe unregister --name $env:COMPUTERNAME
 
       - name: Delete GitLab Runner
+        if: ${{ inputs.delete_runner == 'true' }}
         shell: powershell
         run: Invoke-RestMethod -Uri "${{ inputs.gitlab_url }}/api/v4/runners" -Method DELETE -Body "token=${{ inputs.runner_authentication_token }}"
 
