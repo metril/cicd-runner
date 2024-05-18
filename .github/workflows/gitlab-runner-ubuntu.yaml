@@ -37,7 +37,7 @@ jobs:
           version: '1.62.0'
           
       - name: GitLab Custom CICD
-        uses: metril/gitlab-runner-action@main
+        uses: metril/gitlab-runner-action@lastest
         with:
           authentication-token: "${{ inputs.authentication_token }}"
           gitlab-url: "${{ inputs.gitlab_url }}"
