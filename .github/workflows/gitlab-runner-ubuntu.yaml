@@ -60,4 +60,4 @@ jobs:
           delete-runner: "${{ inputs.delete_runner }}"
           private-token: "${{ inputs.private_token }}"
           project-id: "${{ inputs.project_id }}"
-          tag-list: "${{ inputs.tag-list }}"
+          tag-list: "${{ inputs.tag_list }}"
