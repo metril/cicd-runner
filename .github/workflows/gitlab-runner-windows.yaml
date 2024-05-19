@@ -27,7 +27,7 @@ on:
       max_allowed_job_time:
         description: 'Max allowed job time'
         required: false
-        default: '30'
+        default: '1200'
         
 jobs:
   build:
