@@ -24,6 +24,10 @@ on:
         description: 'Delete runner manager'
         required: true
         default: 'false'
+      max_allowed_job_time:
+        description: 'Max allowed job time'
+        required: false
+        default: '30'
         
 jobs:
   build:
@@ -67,9 +71,14 @@ jobs:
       - name: Check Job Status
         shell: powershell
         run: |
+          $StartTime = $(get-date)
           while ($true) {
             $status = Get-WinEvent -ProviderName gitlab-runner
             if (($status | Where-Object -Property Message -Match "Job succeeded") -Or ($status | Where-Object -Property Message -Match "Failed to process runner")) {
+              break
+            }
+            $elapsedTime = $(get-date) - $StartTime
+            if ( $elapsedTime.TotalSeconds -gt [int]${{ inputs.max_allowed_job_time }} ) {
               break
             }
             Write-Host "Waiting for job status to change..."
